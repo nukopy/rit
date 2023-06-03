@@ -31,18 +31,18 @@ $ tree -L 2 .git
 
 Essential files and directories of Git in `.git` directory are as follows:
 
+- `objects`
+  - A directory that stores all contents (text / binary files) managed by Git
 - `HEAD`
   - A text file that points to the current branch. A content of `HEAD` contains file path to files in `refs` directory.
-- `index`
-  - A file that stores the information of the staging area
-- `objects`
-  - A directory that stores all contents (files) managed by Git
 - `refs`
-  - A directory that stores pointers (branch) that point to commit objects in contents. A content of `refs` directory is as follows:
+  - A directory that stores pointers (branch / tag) that point to commit objects in contents. A content of `refs` directory is as follows:
     - `heads`
       - A directory that stores pointers (branch) that point to commit objects in contents
     - `tags`
       - A directory that stores pointers (tag) that point to commit objects in contents
+- `index`
+  - A file that stores the information of the staging area
 
 <!--
 
