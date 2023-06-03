@@ -63,6 +63,7 @@ jobs:
   # On both Rust stable and Rust nightly
   test:
     name: Test
+    needs: [cargo_check]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
