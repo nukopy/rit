@@ -1,5 +1,7 @@
 # rit
 
+![GitHub Actions workflow badge](https://github.com/nukopy/rit/actions/workflows/ci.yml/badge.svg?branch=main)
+
 Implementation of Git in Rust
 
 ## Environment
