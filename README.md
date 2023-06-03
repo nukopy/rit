@@ -274,3 +274,5 @@ $ git cat-file -p 5f79def7d5c15303a8a565fe28fb9d66dceaec98
 - [(Zenn, 2021/08)Git のインデックスの中身](https://zenn.dev/kaityo256/articles/inside_the_index)
 - [github.com/git/git](https://github.com/git/git)
   - Git Source Code Mirror
+- [github.com/DQNEO/minigit](https://github.com/DQNEO/minigit)
+  - Implementation of Git in C
