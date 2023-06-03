@@ -32,10 +32,7 @@ jobs:
 
   lint:
     name: Lint [Clippy]
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -47,75 +44,41 @@ jobs:
         uses: Swatinem/rust-cache@v2
       - name: Run lint
         run: cargo clippy
-#   unit_tests:
-#     name: Unit Tests
-#     runs-on: ${{ matrix.os }}
-#     env:
-#       # For some builds, we use cross to test on 32-bit and big-endian
-#       # systems.
-#       CARGO: cargo
-#       # When CARGO is set to CROSS, this is set to `--target matrix.target`.
-#       TARGET_FLAGS: ""
-#       # When CARGO is set to CROSS, TARGET_DIR includes matrix.target.
-#       TARGET_DIR: ./target
-#       # Emit backtraces on panics.
-#       RUST_BACKTRACE: 1
-#       RUST_MIN_SRV: "1.43.1"
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#         build: [linux, linux-arm, macos, win-msvc, win32-msvc]
-#         include:
-#           - build: linux
-#             os: ubuntu-18.04
-#             rust: stable
-#             target: x86_64-unknown-linux-musl
-#           - build: linux-arm
-#             os: ubuntu-18.04
-#             rust: stable
-#             target: arm-unknown-linux-gnueabihf
-#           - build: macos
-#             os: macos-latest
-#             rust: stable
-#             target: x86_64-apple-darwin
-#           - build: win-msvc
-#             os: windows-2019
-#             rust: stable
-#             target: x86_64-pc-windows-msvc
-#           - build: win32-msvc
-#             os: windows-2019
-#             rust: stable
-#             target: i686-pc-windows-msvc
-#     steps:
-#       - uses: actions/checkout@v2
 
-#       - name: Install Rust
-#         uses: actions-rs/toolchain@v1
-#         with:
-#           toolchain: ${{ matrix.rust }}
-#           profile: minimal
-#           override: true
-#           target: ${{ matrix.target }}
+  # Ensure that the project could be successfully compiled
+  cargo_check:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Rust toolchains
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache
+        uses: Swatinem/rust-cache@v2
+      - name: Run cargo check
+        run: cargo check --workspace --locked
 
-#       - name: Use Cross
-#         shell: bash
-#         run: |
-#           cargo install cross
-#           echo "CARGO=cross" >> $GITHUB_ENV
-#           echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
-#           echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
+  # Run tests on Linux, macOS, and Windows
+  # On both Rust stable and Rust nightly
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        rust: [stable, nightly]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#       - name: Show command used for Cargo
-#         run: |
-#           echo "cargo command is: ${{ env.CARGO }}"
-#           echo "target flag is: ${{ env.TARGET_FLAGS }}"
-#           echo "target dir is: ${{ env.TARGET_DIR }}"
-
-#       - name: Cache Dependencies
-#         uses: Swatinem/rust-cache@v1
-
-#       - name: Build
-#         run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
-
-#       - name: Run tests
-#         run: ${{ env.CARGO }} test --verbose --workspace ${{ env.TARGET_FLAGS }}
+      # Install all the required dependencies for testing
+      - name: Setup Rust toolchains
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+      - name: Cache
+        uses: Swatinem/rust-cache@v2
+      - name: Run tests
+        run: cargo test --verbose
