@@ -54,6 +54,8 @@ Essential files and directories of Git in `.git` directory are as follows:
 - `refs`
   - A directory that stores pointers (branch) that point to commit objects in contents
 
+<!--
+
 #### `HEAD`
 
 ```sh
@@ -266,6 +268,8 @@ Initial commit
 $ git cat-file -p 5f79def7d5c15303a8a565fe28fb9d66dceaec98
 100644 blob 8a122028a529e462811a84575c12014558a65dac    README.md
 ```
+
+-->
 
 ## References
 
