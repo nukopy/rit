@@ -1,3 +1,8 @@
 # local
 .vscode
 *.code-workspace
+
+
+# Added by cargo
+
+/target
