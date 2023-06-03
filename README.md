@@ -6,9 +6,11 @@ Implementation of Git in Rust
 
 - Rust 1.69.0
 
-## About Git
+## Note
 
-### Directory structure of `.git` when you execute `git init`
+### About Git
+
+#### Directory structure of `.git` when you execute `git init`
 
 ```sh
 $ git init
@@ -27,7 +29,7 @@ $ tree -L 2 .git
     └── tags
 ```
 
-### Essential files and directories of Git
+#### Essential files and directories of Git
 
 Essential files and directories of Git in `.git` directory are as follows:
 
@@ -260,6 +262,27 @@ $ git cat-file -p 5f79def7d5c15303a8a565fe28fb9d66dceaec98
 ```
 
 -->
+
+### commands of cargo
+
+```sh
+# rustc
+rustc main.rs
+./main
+rustc main.rs -o bin/rit
+./bin/rit
+
+# cargo
+cargo new [project name]
+cargo init
+cargo build           # build for development (no optimization, fast build time, slow runtime)
+cargo build --release # build for release (optimization, slow build time, fast runtime)
+cargo run
+cargo run --release
+cargo check
+cargo update
+cargo test
+```
 
 ## References
 
