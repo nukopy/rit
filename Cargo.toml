@@ -1,7 +1,13 @@
 [package]
 name = "rit"
 version = "0.1.0"
+authors = ["nukopy <nukopy@gmail.com>"]
 edition = "2021"
+license = "MIT"
+homepage = "https://github.com/nukopy/rit"
+repository = "https://github.com/nukopy/rit"
+readme = "README.md"
+description = "Implementation of Git in Rust"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
