@@ -299,3 +299,6 @@ cargo test
   - Git Source Code Mirror
 - [github.com/DQNEO/minigit](https://github.com/DQNEO/minigit)
   - Implementation of Git in C
+- [github.com/TaKO8Ki/gobang](https://github.com/TaKO8Ki/gobang)
+  - A cross-platform TUI database management tool written in Rust
+- [Rust エディションガイド](https://doc.rust-jp.rs/edition-guide/editions/index.html)
