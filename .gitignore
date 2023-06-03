@@ -3,6 +3,5 @@
 *.code-workspace
 
 
-# Added by cargo
-
+# Rust
 /target
