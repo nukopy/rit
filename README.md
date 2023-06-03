@@ -301,4 +301,8 @@ cargo test
   - Implementation of Git in C
 - [github.com/TaKO8Ki/gobang](https://github.com/TaKO8Ki/gobang)
   - A cross-platform TUI database management tool written in Rust
-- [Rust エディションガイド](https://doc.rust-jp.rs/edition-guide/editions/index.html)
+- for Rust edition
+  - [The Rust Programming Language 日本語版 - 付録 E：エディション](https://doc.rust-jp.rs/book-ja/appendix-05-editions.html)
+  - [Rust エディションガイド](https://doc.rust-jp.rs/edition-guide/editions/index.html)
+- [github.com/starship/starship](https://github.com/starship/starship)
+  - The minimal, blazing-fast, and infinitely customizable prompt for any shell!
